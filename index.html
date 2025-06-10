@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <!-- ... restul tag-ului <head> rămâne la fel ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Aventura Islanda 2025</title>
+    
+    <!-- PWA Manifest & Theme -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#00A896">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,17 +17,52 @@
 <body>
 
     <div class="app-shell">
-        <!-- Header și Main rămân la fel până la ecranul de hartă -->
         <header class="app-header">
             <h1 id="header-title">Dashboard</h1>
         </header>
 
         <main class="app-main">
-            <!-- Dashboard și Budget rămân la fel -->
-            <div id="dashboard-screen" class="screen active">...</div>
-            <div id="budget-screen" class="screen">...</div>
+            <!-- ECRAN 1: DASHBOARD -->
+            <div id="dashboard-screen" class="screen active">
+                <div class="info-grid">
+                    <div class="info-card"><h3>📅 Perioada</h3><p>2 Săpt.</p><span>Aug-Sep 2025</span></div>
+                    <div class="info-card"><h3>🌋 Aventură</h3><p>MAXIM</p><span>Nivel epic</span></div>
+                    <div class="info-card"><h3>📸 Foto</h3><p>MAXIM+</p><span>Și mai maxim</span></div>
+                </div>
+                
+                <div class="content-card vehicle-card">
+                    <img src="https://images.unsplash.com/photo-1627575397331-527a7694683b?w=800&auto=format&fit=crop" alt="MONSTER">
+                    <div class="card-body">
+                        <h2>MONSTER</h2>
+                        <p>Mercedes Sprinter modificat. Căruța care ne va transporta.</p>
+                        <span class="price-tag">Cost: 2800 €</span>
+                    </div>
+                </div>
+            </div>
 
-            <!-- ECRAN 3: HARTA (MODIFICAT cu data-attributes) -->
+            <!-- ECRAN 2: BUGET -->
+            <div id="budget-screen" class="screen">
+                <ul class="budget-list">
+                    <li>
+                        <span>✈️ Bilete de avion</span>
+                        <span class="cost">~500 € / pers <small>mergem cu nașu'</small></span>
+                    </li>
+                    <li>
+                        <span>⛽ Bani motorină</span>
+                        <span class="cost">400 € / pers <small>800€ total</small></span>
+                    </li>
+                    <li>
+                        <span>🏕️ Bani camping</span>
+                        <span class="cost">100 € / pers</span>
+                    </li>
+                    <li>
+                        <span>🍞 Bani de mâncare</span>
+                        <span class="cost">~150 € / pers <small>cerșim la fiecare punct turistic</small></span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ECRAN 3: HARTA -->
             <div id="map-screen" class="screen">
                 <div class="content-card location-card" data-location-id="landmannalaugar">
                     <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=800&auto=format&fit=crop" alt="Landmannalaugar">
@@ -39,28 +76,72 @@
                     <img src="https://images.unsplash.com/photo-1617190534649-d8c4234a2d34?w=800&auto=format&fit=crop" alt="Kerlingarfjoll">
                     <div class="card-body"><h2>3. Kerlingarfjoll + Hveravellir</h2><p>Zonă geotermală vibrantă și izvoare fierbinți.</p></div>
                 </div>
-                <!-- Repetă adăugarea de data-location-id pentru TOATE cele 11 carduri -->
-                <div class="content-card location-card" data-location-id="axlafoss">...</div>
-                <div class="content-card location-card" data-location-id="blafjallafoss">...</div>
-                <div class="content-card location-card" data-location-id="maelifell">...</div>
-                <div class="content-card location-card" data-location-id="raudibotn">...</div>
-                <div class="content-card location-card" data-location-id="thakgil">...</div>
-                <div class="content-card location-card" data-location-id="waterfall-hike">...</div>
-                <div class="content-card location-card" data-location-id="langisjor">...</div>
-                <div class="content-card location-card" data-location-id="braided-rivers">...</div>
-                
+                <div class="content-card location-card" data-location-id="axlafoss">
+                    <img src="https://images.unsplash.com/photo-1547733994-9e3b51861a43?w=800&auto=format&fit=crop" alt="Cascada Axlafoss">
+                    <div class="card-body"><h2>4. Axlafoss</h2><p>Cascadă într-un canion impresionant.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="blafjallafoss">
+                    <img src="https://images.unsplash.com/photo-1604789232362-3867562bec98?w=800&auto=format&fit=crop" alt="Cascada Blafjallafoss">
+                    <div class="card-body"><h2>5. Blafjallafoss</h2><p>Cascada cu mașina pe deasupra.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="maelifell">
+                    <img src="https://images.unsplash.com/photo-1633267290933-2336c175852a?w=800&auto=format&fit=crop" alt="Maelifell">
+                    <div class="card-body"><h2>6. Maelifell</h2><p>Muntele din deșertul negru – una dintre cele mai râvnite locații.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="raudibotn">
+                    <img src="https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800&auto=format&fit=crop" alt="Raudibotn">
+                    <div class="card-body"><h2>7. Raudibotn + Holmsarfossar</h2><p>Crater de un roșu intens și cascadele din apropiere.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="thakgil">
+                    <img src="https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?w=800&auto=format&fit=crop" alt="Thakgil">
+                    <div class="card-body"><h2>8. Thakgil (Þakgil)</h2><p>Zonă de hike, aproape de un ghețar.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="waterfall-hike">
+                    <img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&auto=format&fit=crop" alt="Skogafoss">
+                    <div class="card-body"><h2>9. The waterfall hike</h2><p>De la Skogafoss, ~13 km, ~15-20 cascade.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="langisjor">
+                    <img src="https://images.unsplash.com/photo-1628359441744-53746736c244?w=800&auto=format&fit=crop" alt="Langisjor">
+                    <div class="card-body"><h2>10. Ofaerufoss + Langisjor</h2><p>Unul dintre cele mai mari lacuri, peisaje bune din dronă.</p></div>
+                </div>
+                <div class="content-card location-card" data-location-id="braided-rivers">
+                    <img src="https://images.unsplash.com/photo-1553667818-57fb44116c53?w=800&auto=format&fit=crop" alt="Braided Rivers">
+                    <div class="card-body"><h2>11. Braided rivers of Iceland</h2><p>Râuri glaciare văzute de sus.</p></div>
+                </div>
                 <div class="content-card location-card">
                     <div class="card-body"><h2>Și mai mult...</h2><p>Există și alte locații, pe care le vom discuta ulterior.</p></div>
                 </div>
             </div>
 
-            <div id="checklist-screen" class="screen">...</div>
+            <!-- ECRAN 4: CHECKLIST -->
+            <div id="checklist-screen" class="screen">
+                 <ul class="checklist">
+                    <!-- Elementele vor fi adăugate din JS -->
+                 </ul>
+            </div>
         </main>
 
-        <nav class="app-nav">...</nav>
+        <nav class="app-nav">
+            <button data-screen="dashboard-screen" data-title="Dashboard" class="nav-button active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 15.5l-4-4L8 12l2.5 2.5L16 9l1.5 1.5-7 7z"/></svg>
+                <span>Dashboard</span>
+            </button>
+            <button data-screen="budget-screen" data-title="Buget" class="nav-button">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-10-8H6v2h4v-2z"/></svg>
+                <span>Buget</span>
+            </button>
+            <button data-screen="map-screen" data-title="Traseu" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Traseu</span>
+            </button>
+            <button data-screen="checklist-screen" data-title="Checklist" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                <span>Checklist</span>
+            </button>
+        </nav>
     </div>
     
-    <!-- NOU: Structura pentru Modalul Galeriei Foto -->
+    <!-- Structura pentru Modalul Galeriei Foto -->
     <div id="gallery-modal" class="modal-overlay">
         <div class="modal-content">
             <button id="close-modal-btn" class="modal-close-btn">×</button>
