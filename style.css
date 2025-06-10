@@ -274,3 +274,13 @@ body {
         align-items: flex-start;
     }
 }
+
+/* --- Stiluri pentru Harta Embedată --- */
+#map-screen iframe {
+    position: absolute; /* Permite iframe-ului să umple containerul .screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Asigură eliminarea oricărui chenar */
+}
