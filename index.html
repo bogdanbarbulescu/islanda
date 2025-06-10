@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Aventura Islanda 2025</title>
+    
+    <!-- PWA Manifest & Theme -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00A896">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-shell">
+        <header class="app-header">
+            <h1 id="header-title">Dashboard</h1>
+        </header>
+
+        <main class="app-main">
+            <!-- ECRAN 1: DASHBOARD (vizibil by default) -->
+            <div id="dashboard-screen" class="screen active">
+                <div class="info-grid">
+                    <div class="info-card"><h3>📅 Perioada</h3><p>2 Săpt.</p><span>Aug-Sep 2025</span></div>
+                    <div class="info-card"><h3>🌋 Aventură</h3><p>MAXIM</p><span>Nivel epic</span></div>
+                    <div class="info-card"><h3>📸 Foto</h3><p>MAXIM+</p><span>Pregătiți senzorii</span></div>
+                </div>
+                
+                <div class="content-card vehicle-card">
+                    <img src="https://i.imgur.com/8N0xq2d.jpeg" alt="MONSTER">
+                    <div class="card-body">
+                        <h2>MONSTER-ul</h2>
+                        <p>Mercedes Sprinter 4x4. Căruța noastră de foc.</p>
+                        <span class="price-tag">Închiriere: 2800 €</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ECRAN 2: BUGET -->
+            <div id="budget-screen" class="screen">
+                <div class="total-budget-card">
+                    <h3>Total / Persoană</h3>
+                    <p id="total-cost">750 €</p>
+                    <small>*Fără costul mașinii și mâncare</small>
+                </div>
+                <ul class="budget-list">
+                    <li><span>✈️ Bilete de Avion</span><span class="cost">~500 €</span></li>
+                    <li><span>⛽ Motorină "Monster"</span><span class="cost">~150 €</span></li>
+                    <li><span>🏕️ Camping</span><span class="cost">100 €</span></li>
+                    <li><span>🍞 Mâncare</span><span class="cost">0 € <small>(Cerșim)</small></span></li>
+                </ul>
+            </div>
+
+            <!-- ECRAN 3: HARTA -->
+            <div id="map-screen" class="screen">
+                <div class="content-card location-card">
+                    <img src="https://i.imgur.com/uNkvfVB.jpeg" alt="Landmannalaugar">
+                    <div class="card-body">
+                        <h2>1. Landmannalaugar</h2>
+                        <p>Inima colorată a Islandei. Munți, cratere, lacuri și izvoare termale.</p>
+                    </div>
+                </div>
+                <div class="content-card location-card">
+                    <img src="https://i.imgur.com/5lPMV1t.jpeg" alt="Laki Craters">
+                    <div class="card-body">
+                        <h2>2. Laki Craters</h2>
+                        <p>Peisaj apocaliptic. Peste 130 de cratere și canioane spectaculoase.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ECRAN 4: CHECKLIST -->
+            <div id="checklist-screen" class="screen">
+                 <ul class="checklist">
+                    <!-- Elementele vor fi adăugate din JS -->
+                 </ul>
+            </div>
+        </main>
+
+        <nav class="app-nav">
+            <button data-screen="dashboard-screen" data-title="Dashboard" class="nav-button active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 15.5l-4-4L8 12l2.5 2.5L16 9l1.5 1.5-7 7z"/></svg>
+                <span>Dashboard</span>
+            </button>
+            <button data-screen="budget-screen" data-title="Buget" class="nav-button">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-10-8H6v2h4v-2z"/></svg>
+                <span>Buget</span>
+            </button>
+            <button data-screen="map-screen" data-title="Traseu" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Traseu</span>
+            </button>
+            <button data-screen="checklist-screen" data-title="Checklist" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                <span>Checklist</span>
+            </button>
+        </nav>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
