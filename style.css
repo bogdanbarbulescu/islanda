@@ -17,18 +17,19 @@
 html { font-family: var(--font-body); }
 
 body {
-    background-color: var(--bg-color);
+    background-color: #000; /* Fundal negru pentru a umple spatiile pe desktop */
     color: var(--text-color);
     font-size: 16px;
-    -webkit-tap-highlight-color: transparent; /* Elimină flash-ul albastru la atingere pe mobil */
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* --- Structura App Shell --- */
+/* --- Structura App Shell (CHEIA PENTRU STICKY HEADER/NAV) --- */
 .app-shell {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh; /* Ocupă tot ecranul pe înălțime */
+    overflow: hidden; /* Previne scroll-ul pe întregul body */
+    background-color: var(--bg-color);
 }
 
 .app-header {
@@ -37,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Previne micșorarea header-ului */
     border-bottom: 1px solid #2a2a2a;
 }
 
@@ -48,10 +49,9 @@ body {
 }
 
 .app-main {
-    flex-grow: 1;
-    overflow-y: auto;
+    flex-grow: 1; /* Ocupă tot spațiul rămas */
+    overflow-y: auto; /* PERMITE SCROLL-UL DOAR AICI */
     position: relative;
-    padding: 20px;
 }
 
 /* --- Managementul Ecranelor și Tranzițiilor --- */
@@ -76,7 +76,6 @@ body {
     transform: translateX(-20px);
 }
 
-
 /* --- Bara de Navigație (Tab Bar) --- */
 .app-nav {
     height: var(--nav-height);
@@ -84,7 +83,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid #2a2a2a;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Previne micșorarea nav-ului */
 }
 
 .nav-button {
@@ -99,23 +98,11 @@ body {
     cursor: pointer;
     transition: color 0.2s ease;
 }
+.nav-button.active { color: var(--primary-color); }
+.nav-button svg { width: 28px; height: 28px; }
+.nav-button span { font-size: 0.75rem; font-family: var(--font-body); }
 
-.nav-button.active {
-    color: var(--primary-color);
-}
-
-.nav-button svg {
-    width: 28px;
-    height: 28px;
-}
-
-.nav-button span {
-    font-size: 0.75rem;
-    font-family: var(--font-body);
-}
-
-
-/* --- Stiluri Componente Specifice Ecrane --- */
+/* --- Stiluri Componente Specifice Ecrane (MOBILE-FIRST) --- */
 
 /* Dashboard Screen */
 .info-grid {
@@ -130,7 +117,7 @@ body {
     border-radius: var(--border-radius);
     text-align: center;
 }
-.info-card h3 { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; }
+.info-card h3 { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; }
 .info-card p { font-family: var(--font-heading); font-size: 1.8rem; line-height: 1.2; }
 .info-card span { font-size: 0.8rem; color: #888; }
 
@@ -147,9 +134,7 @@ body {
     object-fit: cover;
     display: block;
 }
-.content-card .card-body {
-    padding: 20px;
-}
+.content-card .card-body { padding: 20px; }
 .card-body h2 {
     font-family: var(--font-heading);
     font-size: 2rem;
@@ -167,7 +152,6 @@ body {
     font-weight: bold;
 }
 
-
 /* Budget Screen */
 .total-budget-card {
     background: linear-gradient(45deg, var(--primary-color), #007a6e);
@@ -181,9 +165,7 @@ body {
 .total-budget-card p { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1; }
 .total-budget-card small { color: rgba(255,255,255,0.7); }
 
-.budget-list {
-    list-style: none;
-}
+.budget-list { list-style: none; }
 .budget-list li {
     display: flex;
     justify-content: space-between;
@@ -197,9 +179,7 @@ body {
 .budget-list small { font-size: 0.9rem; color: var(--text-secondary); font-style: italic; }
 
 /* Checklist Screen */
-.checklist {
-    list-style: none;
-}
+.checklist { list-style: none; }
 .checklist li {
     background-color: var(--surface-color);
     margin-bottom: 10px;
@@ -212,12 +192,8 @@ body {
     user-select: none;
     transition: opacity 0.3s ease;
 }
-.checklist li.checked {
-    opacity: 0.5;
-}
-.checklist li.checked span {
-    text-decoration: line-through;
-}
+.checklist li.checked { opacity: 0.5; }
+.checklist li.checked span { text-decoration: line-through; }
 .checklist .checkbox {
     width: 24px;
     height: 24px;
@@ -236,7 +212,45 @@ body {
     transform: scale(0.5);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.checklist li.checked .checkbox svg {
-    opacity: 1;
-    transform: scale(1);
+.checklist li.checked .checkbox svg { opacity: 1; transform: scale(1); }
+
+
+/* --- MEDIA QUERIES PENTRU RESPONSIVE --- */
+
+/* Stiluri pentru tablete și desktop-uri (de la 768px în sus) */
+@media (min-width: 768px) {
+    /* Centrează aplicația pe ecran și îi dă un aspect de "fereastră" */
+    .app-shell {
+        max-width: 1024px; /* Lățime maximă pentru layout */
+        margin: 20px auto; /* Centrează pe orizontală și adaugă spațiu sus/jos */
+        height: calc(100vh - 40px); /* Ajustează înălțimea pentru a se vedea margin-ul */
+        border-radius: 20px; /* Colțuri rotunjite pentru aspect de aplicație */
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Umbră pentru profunzime */
+    }
+
+    /* Mărește fonturile pentru lizibilitate */
+    .app-header h1 { font-size: 2.5rem; }
+    .nav-button span { font-size: 0.85rem; }
+
+    /* Pe ecranul Traseu, afișează locațiile pe două coloane */
+    #map-screen {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+/* Stiluri specifice pentru layout-uri foarte late (desktop mare) */
+@media (min-width: 1024px) {
+    .app-shell {
+        max-width: 1200px; /* Lățime și mai mare pentru monitoare mari */
+    }
+
+    /* Pe Dashboard, cardul cu mașina poate sta lângă info-grid */
+    #dashboard-screen {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: flex-start;
+    }
 }
