@@ -1,0 +1,21 @@
+{
+  "name": "Aventura Islanda 2025",
+  "short_name": "Islanda '25",
+  "description": "Planul de bătălie pentru cucerirea Islandei.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#00A896",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
