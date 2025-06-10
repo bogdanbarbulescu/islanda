@@ -25,20 +25,17 @@ body {
 
 /* --- Structura App Shell --- */
 .app-shell {
-    /* MODIFICAT: Nu mai folosim flexbox pentru a aranja shell-ul */
-    position: relative; /* Necesar pentru a ancora elementele fixe pe desktop */
+    position: relative;
     height: 100vh;
     background-color: var(--bg-color);
 }
 
 .app-header {
-    /* NOU: Poziționare fixă în partea de sus */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10; /* Asigură că stă deasupra conținutului */
-
+    z-index: 10;
     height: var(--header-height);
     background-color: var(--surface-color);
     display: flex;
@@ -54,31 +51,34 @@ body {
 }
 
 .app-main {
-    /* MODIFICAT: Adăugăm padding pentru a nu fi acoperit de header/nav */
-    padding-top: var(--header-height);
-    padding-bottom: var(--nav-height);
-    height: 100%; /* Ocupă toată înălțimea disponibilă */
-    overflow-y: auto; /* Permite scroll-ul doar aici */
-    position: relative;
+    /* MODIFICAT: Acesta devine un container static care delimitează spațiul */
+    position: fixed;
+    top: var(--header-height);
+    bottom: var(--nav-height);
+    left: 0;
+    right: 0;
+    overflow: hidden; /* Important pentru a conține ecranele poziționate absolut */
 }
 
 /* --- Managementul Ecranelor și Tranzițiilor --- */
 .screen {
-    /* MODIFICAT: Padding-ul este acum pe .screen, nu pe .app-main */
-    padding: 20px;
-    
-    /* Restul rămâne la fel */
+    /* MODIFICAT: Fiecare ecran devine propriul său container de scroll */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
+    overflow-y: auto; /* PERMITE SCROLL-UL DOAR AICI */
+    padding: 20px; /* Padding pentru conținutul din interior */
+
+    /* Restul proprietăților de tranziție rămân la fel */
     visibility: hidden;
     opacity: 0;
     transform: translateX(20px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 .screen.active {
-    position: relative;
+    position: relative; /* Se schimbă în 'relative' doar când e activ pentru a ocupa spațiu corect */
     visibility: visible;
     opacity: 1;
     transform: translateX(0);
@@ -89,13 +89,11 @@ body {
 
 /* --- Bara de Navigație (Tab Bar) --- */
 .app-nav {
-    /* NOU: Poziționare fixă în partea de jos */
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10; /* Asigură că stă deasupra conținutului */
-
+    z-index: 10;
     height: var(--nav-height);
     background-color: var(--surface-color);
     display: grid;
@@ -243,27 +241,16 @@ body {
         height: calc(100vh - 40px);
         border-radius: 20px;
         box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        overflow: hidden; /* NOU: Ascunde ce depășește colțurile rotunjite */
+        overflow: hidden;
     }
 
-    /* NOU: Pe desktop, elementele fixe trebuie să fie constrânse de .app-shell */
-    .app-header, .app-nav {
-        position: absolute; /* Se schimbă din fixed în absolute */
-    }
-
-    .app-header {
-        /* NOU: Se asigură că header-ul se întinde pe lățimea containerului .app-shell */
-        width: 100%;
-        left: auto;
-        right: auto;
+    .app-header, .app-nav, .app-main {
+        position: absolute;
     }
     
-    .app-nav {
-        /* NOU: Se asigură că nav-ul se întinde pe lățimea containerului .app-shell */
-        width: 100%;
-        left: auto;
-        right: auto;
-    }
+    .app-header { width: 100%; left: auto; right: auto; }
+    .app-nav { width: 100%; left: auto; right: auto; }
+    .app-main { width: 100%; left: auto; right: auto; }
 
     .app-header h1 { font-size: 2.5rem; }
     .nav-button span { font-size: 0.85rem; }
@@ -286,91 +273,4 @@ body {
         gap: 20px;
         align-items: flex-start;
     }
-}
-
-/* --- Modal (Galerie Foto) --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.gallery-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#gallery-image {
-    max-width: 100%;
-    max-height: 80vh;
-    border-radius: 10px;
-    user-select: none;
-}
-
-.gallery-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
-}
-.gallery-nav-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-.gallery-nav-btn.prev { left: -25px; }
-.gallery-nav-btn.next { right: -25px; }
-
-.gallery-counter {
-    text-align: center;
-    color: white;
-    margin-top: 15px;
-    font-size: 1.1rem;
-}
-
-/* Responsive pentru butoanele de navigare pe mobil */
-@media (max-width: 767px) {
-    .gallery-nav-btn.prev { left: 5px; }
-    .gallery-nav-btn.next { right: 5px; }
 }
