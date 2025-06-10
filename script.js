@@ -1,93 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM complet încărcat și parsat.");
+
     // --- Înregistrare Service Worker pentru PWA ---
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js') // Asigură-te că calea este corectă pentru GitHub Pages dacă e într-un subfolder
             .then(registration => {
                 console.log('Service Worker înregistrat cu succes:', registration);
             })
             .catch(error => {
-                console.log('Eroare la înregistrarea Service Worker:', error);
+                console.error('Eroare la înregistrarea Service Worker:', error);
             });
     }
-
-    // --- BAZA DE DATE PENTRU IMAGINI ---
-    const locationImages = {
-        'landmannalaugar': [
-            'https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=800',
-            'https://images.unsplash.com/photo-1540390769625-2fc3f8b1f5c5?w=800',
-            'https://images.unsplash.com/photo-1616518163723-9964213a5191?w=800'
-        ],
-        'laki-craters': [
-            'https://images.unsplash.com/photo-1534279539332-d34a8a142814?w=800',
-            'https://images.unsplash.com/photo-1551423997-dd9e5a0a9b52?w=800',
-            'https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800'
-        ],
-        'kerlingarfjoll': [
-            'https://images.unsplash.com/photo-1617190534649-d8c4234a2d34?w=800',
-            'https://images.unsplash.com/photo-1604278361252-227e58308194?w=800',
-            'https://images.unsplash.com/photo-1617190534603-d8c4234a2d34?w=800'
-        ],
-        'axlafoss': [
-            'https://images.unsplash.com/photo-1547733994-9e3b51861a43?w=800',
-            'https://images.unsplash.com/photo-1569917983435-31398c16781e?w=800',
-            'https://images.unsplash.com/photo-1431036101494-69a3621d0b29?w=800'
-        ],
-        'blafjallafoss': [
-            'https://images.unsplash.com/photo-1604789232362-3867562bec98?w=800',
-            'https://images.unsplash.com/photo-1558987101-73d49e42914a?w=800',
-            'https://images.unsplash.com/photo-1598283721052-a2283833889a?w=800'
-        ],
-        'maelifell': [
-            'https://images.unsplash.com/photo-1633267290933-2336c175852a?w=800',
-            'https://images.unsplash.com/photo-1588696632332-5b1a5336e9b7?w=800',
-            'https://images.unsplash.com/photo-1588696632332-5b1a5336e9b7?w=800'
-        ],
-        'raudibotn': [
-            'https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800',
-            'https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800',
-            'https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800'
-        ],
-        'thakgil': [
-            'https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?w=800',
-            'https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?w=800',
-            'https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?w=800'
-        ],
-        'waterfall-hike': [
-            'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800',
-            'https://images.unsplash.com/photo-1535546204542-5237f20c3957?w=800',
-            'https://images.unsplash.com/photo-1547733994-9e3b51861a43?w=800'
-        ],
-        'langisjor': [
-            'https://images.unsplash.com/photo-1628359441744-53746736c244?w=800',
-            'https://images.unsplash.com/photo-1628359441744-53746736c244?w=800',
-            'https://images.unsplash.com/photo-1628359441744-53746736c244?w=800'
-        ],
-        'braided-rivers': [
-            'https://images.unsplash.com/photo-1553667818-57fb44116c53?w=800',
-            'https://images.unsplash.com/photo-1553667818-57fb44116c53?w=800',
-            'https://images.unsplash.com/photo-1553667818-57fb44116c53?w=800'
-        ]
-    };
 
     // --- Variabile DOM ---
     const navButtons = document.querySelectorAll('.nav-button');
     const screens = document.querySelectorAll('.screen');
     const headerTitle = document.getElementById('header-title');
-    const checklistContainer = document.querySelector('.checklist');
-    const mapScreen = document.getElementById('map-screen');
-
-    // --- Variabile DOM pentru Modal ---
-    const modal = document.getElementById('gallery-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const galleryImage = document.getElementById('gallery-image');
-    const prevBtn = document.getElementById('prev-image-btn');
-    const nextBtn = document.getElementById('next-image-btn');
-    const galleryCounter = document.getElementById('gallery-counter');
-
-    // --- Variabile de stare pentru Galerie ---
-    let currentImages = [];
-    let currentImageIndex = 0;
-
+    
+    // MODIFICAT: Selector mai specific și logare
+    const checklistContainer = document.querySelector('#checklist-screen .checklist'); 
+    console.log("Selector pentru checklistContainer:", checklistContainer ? "Găsit" : "NU A FOST GĂSIT!");
+    if (!checklistContainer) {
+        console.error("Elementul <ul class='checklist'> din interiorul #checklist-screen nu a fost găsit. Verifică HTML-ul.");
+    }
+    
     // --- Date pentru Checklist ---
     const checklistItems = [
         'Bocanci de munte impermeabili',
@@ -109,27 +45,46 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let checkedState = {};
 
-    // --- Funcții Navigație Aplicație ---
+    // --- Funcții ---
+
     const switchScreen = (targetScreenId, newTitle) => {
+        console.log(`Comutare către ecran: ${targetScreenId}, Titlu: ${newTitle}`);
         const currentActiveScreen = document.querySelector('.screen.active');
         const targetScreen = document.getElementById(targetScreenId);
         
-        if (currentActiveScreen === targetScreen) return;
+        if (currentActiveScreen === targetScreen) {
+            console.log("Ecranul este deja activ.");
+            return;
+        }
 
         if(currentActiveScreen) {
             currentActiveScreen.classList.add('exit-left');
-            currentActiveScreen.classList.remove('active');
+            // Eliminăm 'active' după o mică întârziere pentru a permite animației de ieșire să ruleze
+            // Dar pentru a evita conflicte, o eliminăm mai întâi din vizibilitate
+            setTimeout(() => {
+                currentActiveScreen.classList.remove('active');
+            }, 0); // Sau o valoare mică dacă animația de ieșire depinde de 'active'
         }
 
-        setTimeout(() => {
-            screens.forEach(s => {
-                s.classList.remove('active', 'exit-left');
-            });
-            
-            if (targetScreen) {
+        // Ascunde toate ecranele (ca fallback, deși animația ar trebui să gestioneze asta)
+        // screens.forEach(s => s.classList.remove('active', 'exit-left')); // Comentat temporar pentru a vedea efectul
+
+        if (targetScreen) {
+            // Adaugă 'active' după o mică întârziere pentru a permite animației de intrare să fie vizibilă
+            setTimeout(() => {
+                // Asigură-te că toate celelalte ecrane nu sunt active
+                screens.forEach(s => {
+                    if (s.id !== targetScreenId) {
+                        s.classList.remove('active', 'exit-left');
+                    }
+                });
+                targetScreen.classList.remove('exit-left'); // În caz că a rămas de la o tranziție anterioară
                 targetScreen.classList.add('active');
-            }
-        }, 150);
+                console.log(`Ecranul ${targetScreenId} este acum activ.`);
+            }, 150); // Sincronizat cu durata tranziției CSS
+        } else {
+            console.error(`Ecranul țintă cu ID-ul '${targetScreenId}' nu a fost găsit.`);
+        }
 
         headerTitle.textContent = newTitle;
 
@@ -138,11 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // --- Funcții Checklist ---
     const renderChecklist = () => {
-        checklistContainer.innerHTML = '';
-        loadCheckedState();
+        console.log("--- Început renderChecklist ---");
+
+        if (!checklistContainer) {
+            console.error("renderChecklist: checklistContainer este null. Funcția se oprește.");
+            return;
+        }
+        console.log("renderChecklist: checklistContainer este valid.");
+
+        checklistContainer.innerHTML = ''; // Golește lista existentă
+        console.log("renderChecklist: Lista a fost golită.");
         
+        loadCheckedState(); // Încarcă starea din localStorage
+        console.log("renderChecklist: Starea bifelor a fost încărcată:", checkedState);
+        
+        if (!checklistItems || checklistItems.length === 0) {
+            console.warn("renderChecklist: Array-ul checklistItems este gol sau nedefinit.");
+            checklistContainer.innerHTML = "<li>Niciun element în checklist.</li>";
+            return;
+        }
+        console.log("renderChecklist: Se vor randa următoarele elemente:", checklistItems);
+
         checklistItems.forEach((item, index) => {
             const isChecked = checkedState[index] || false;
             const li = document.createElement('li');
@@ -157,46 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             checklistContainer.appendChild(li);
         });
+        console.log("--- Sfârșit renderChecklist ---");
     };
 
     const saveCheckedState = () => {
         localStorage.setItem('icelandChecklistState', JSON.stringify(checkedState));
+        console.log("Starea bifelor a fost salvată în localStorage.");
     };
 
     const loadCheckedState = () => {
         const savedState = localStorage.getItem('icelandChecklistState');
         if (savedState) {
             checkedState = JSON.parse(savedState);
+        } else {
+            checkedState = {}; // Asigură-te că este un obiect gol dacă nu există nimic salvat
         }
-    };
-
-    // --- Funcții pentru Galerie ---
-    const showImage = (index) => {
-        galleryImage.src = currentImages[index];
-        galleryCounter.textContent = `${index + 1} / ${currentImages.length}`;
-        currentImageIndex = index;
-    };
-
-    const nextImage = () => {
-        const newIndex = (currentImageIndex + 1) % currentImages.length;
-        showImage(newIndex);
-    };
-
-    const prevImage = () => {
-        const newIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-        showImage(newIndex);
-    };
-
-    const openModal = (locationId) => {
-        currentImages = locationImages[locationId] || [];
-        if (currentImages.length === 0) return;
-        
-        showImage(0);
-        modal.classList.add('active');
-    };
-
-    const closeModal = () => {
-        modal.classList.remove('active');
     };
 
     // --- Evenimente ---
@@ -208,40 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    checklistContainer.addEventListener('click', (e) => {
-        const listItem = e.target.closest('li');
-        if (listItem) {
-            const index = listItem.dataset.index;
-            listItem.classList.toggle('checked');
-            checkedState[index] = listItem.classList.contains('checked');
-            saveCheckedState();
-        }
-    });
-
-    mapScreen.addEventListener('click', (e) => {
-        const locationCard = e.target.closest('.location-card[data-location-id]');
-        if (locationCard) {
-            const locationId = locationCard.dataset.locationId;
-            openModal(locationId);
-        }
-    });
-
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    nextBtn.addEventListener('click', nextImage);
-    prevBtn.addEventListener('click', prevImage);
-    document.addEventListener('keydown', (e) => {
-        if (modal.classList.contains('active')) {
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-            if (e.key === 'Escape') closeModal();
-        }
-    });
+    if (checklistContainer) { // Adaugă event listener doar dacă containerul există
+        checklistContainer.addEventListener('click', (e) => {
+            const listItem = e.target.closest('li');
+            if (listItem) {
+                const index = listItem.dataset.index;
+                listItem.classList.toggle('checked');
+                checkedState[index] = listItem.classList.contains('checked');
+                saveCheckedState();
+            }
+        });
+    } else {
+        console.warn("Event listener pentru checklist nu a fost adăugat deoarece checklistContainer este null.");
+    }
 
     // --- Inițializare ---
-    renderChecklist();
+    console.log("Se apelează renderChecklist() la inițializare...");
+    renderChecklist(); 
 });
