@@ -17,28 +17,33 @@
 html { font-family: var(--font-body); }
 
 body {
-    background-color: #000; /* Fundal negru pentru a umple spatiile pe desktop */
+    background-color: #000;
     color: var(--text-color);
     font-size: 16px;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* --- Structura App Shell (CHEIA PENTRU STICKY HEADER/NAV) --- */
+/* --- Structura App Shell --- */
 .app-shell {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Ocupă tot ecranul pe înălțime */
-    overflow: hidden; /* Previne scroll-ul pe întregul body */
+    /* MODIFICAT: Nu mai folosim flexbox pentru a aranja shell-ul */
+    position: relative; /* Necesar pentru a ancora elementele fixe pe desktop */
+    height: 100vh;
     background-color: var(--bg-color);
 }
 
 .app-header {
+    /* NOU: Poziționare fixă în partea de sus */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; /* Asigură că stă deasupra conținutului */
+
     height: var(--header-height);
     background-color: var(--surface-color);
     display: flex;
     align-items: center;
     padding: 0 20px;
-    flex-shrink: 0; /* Previne micșorarea header-ului */
     border-bottom: 1px solid #2a2a2a;
 }
 
@@ -49,18 +54,24 @@ body {
 }
 
 .app-main {
-    flex-grow: 1; /* Ocupă tot spațiul rămas */
-    overflow-y: auto; /* PERMITE SCROLL-UL DOAR AICI */
+    /* MODIFICAT: Adăugăm padding pentru a nu fi acoperit de header/nav */
+    padding-top: var(--header-height);
+    padding-bottom: var(--nav-height);
+    height: 100%; /* Ocupă toată înălțimea disponibilă */
+    overflow-y: auto; /* Permite scroll-ul doar aici */
     position: relative;
 }
 
 /* --- Managementul Ecranelor și Tranzițiilor --- */
 .screen {
+    /* MODIFICAT: Padding-ul este acum pe .screen, nu pe .app-main */
+    padding: 20px;
+    
+    /* Restul rămâne la fel */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
     visibility: hidden;
     opacity: 0;
     transform: translateX(20px);
@@ -78,12 +89,18 @@ body {
 
 /* --- Bara de Navigație (Tab Bar) --- */
 .app-nav {
+    /* NOU: Poziționare fixă în partea de jos */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; /* Asigură că stă deasupra conținutului */
+
     height: var(--nav-height);
     background-color: var(--surface-color);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid #2a2a2a;
-    flex-shrink: 0; /* Previne micșorarea nav-ului */
 }
 
 .nav-button {
@@ -102,7 +119,9 @@ body {
 .nav-button svg { width: 28px; height: 28px; }
 .nav-button span { font-size: 0.75rem; font-family: var(--font-body); }
 
+
 /* --- Stiluri Componente Specifice Ecrane (MOBILE-FIRST) --- */
+/* ... RESTUL CODULUI CSS RĂMÂNE IDENTIC ... */
 
 /* Dashboard Screen */
 .info-grid {
@@ -217,22 +236,38 @@ body {
 
 /* --- MEDIA QUERIES PENTRU RESPONSIVE --- */
 
-/* Stiluri pentru tablete și desktop-uri (de la 768px în sus) */
 @media (min-width: 768px) {
-    /* Centrează aplicația pe ecran și îi dă un aspect de "fereastră" */
     .app-shell {
-        max-width: 1024px; /* Lățime maximă pentru layout */
-        margin: 20px auto; /* Centrează pe orizontală și adaugă spațiu sus/jos */
-        height: calc(100vh - 40px); /* Ajustează înălțimea pentru a se vedea margin-ul */
-        border-radius: 20px; /* Colțuri rotunjite pentru aspect de aplicație */
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Umbră pentru profunzime */
+        max-width: 1024px;
+        margin: 20px auto;
+        height: calc(100vh - 40px);
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        overflow: hidden; /* NOU: Ascunde ce depășește colțurile rotunjite */
     }
 
-    /* Mărește fonturile pentru lizibilitate */
+    /* NOU: Pe desktop, elementele fixe trebuie să fie constrânse de .app-shell */
+    .app-header, .app-nav {
+        position: absolute; /* Se schimbă din fixed în absolute */
+    }
+
+    .app-header {
+        /* NOU: Se asigură că header-ul se întinde pe lățimea containerului .app-shell */
+        width: 100%;
+        left: auto;
+        right: auto;
+    }
+    
+    .app-nav {
+        /* NOU: Se asigură că nav-ul se întinde pe lățimea containerului .app-shell */
+        width: 100%;
+        left: auto;
+        right: auto;
+    }
+
     .app-header h1 { font-size: 2.5rem; }
     .nav-button span { font-size: 0.85rem; }
 
-    /* Pe ecranul Traseu, afișează locațiile pe două coloane */
     #map-screen {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -240,13 +275,11 @@ body {
     }
 }
 
-/* Stiluri specifice pentru layout-uri foarte late (desktop mare) */
 @media (min-width: 1024px) {
     .app-shell {
-        max-width: 1200px; /* Lățime și mai mare pentru monitoare mari */
+        max-width: 1200px;
     }
 
-    /* Pe Dashboard, cardul cu mașina poate sta lângă info-grid */
     #dashboard-screen {
         display: grid;
         grid-template-columns: 1fr 1fr;
