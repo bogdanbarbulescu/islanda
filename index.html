@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Aventura Islanda 2025</title>
     
-    <!-- PWA Manifest & Theme -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#00A896">
 
@@ -22,95 +21,55 @@
         </header>
 
         <main class="app-main">
-            <!-- ECRAN 1: DASHBOARD -->
+            <!-- ECRAN 1: DASHBOARD (vizibil by default) -->
             <div id="dashboard-screen" class="screen active">
                 <div class="info-grid">
                     <div class="info-card"><h3>📅 Perioada</h3><p>2 Săpt.</p><span>Aug-Sep 2025</span></div>
                     <div class="info-card"><h3>🌋 Aventură</h3><p>MAXIM</p><span>Nivel epic</span></div>
-                    <div class="info-card"><h3>📸 Foto</h3><p>MAXIM+</p><span>Și mai maxim</span></div>
+                    <div class="info-card"><h3>📸 Foto</h3><p>MAXIM+</p><span>Pregătiți cardurile</span></div>
                 </div>
                 
                 <div class="content-card vehicle-card">
-                    <img src="https://images.unsplash.com/photo-1627575397331-527a7694683b?w=800&auto=format&fit=crop" alt="MONSTER">
+                    <img src="images/monster.jpeg" alt="MONSTER">
                     <div class="card-body">
-                        <h2>MONSTER</h2>
-                        <p>Mercedes Sprinter modificat. Căruța care ne va transporta.</p>
-                        <span class="price-tag">Cost: 2800 €</span>
+                        <h2>MONSTER-ul</h2>
+                        <p>Mercedes Sprinter 4x4. Căruța noastră de foc.</p>
+                        <span class="price-tag">Închiriere: 2800 €</span>
                     </div>
                 </div>
             </div>
 
             <!-- ECRAN 2: BUGET -->
             <div id="budget-screen" class="screen">
+                <div class="total-budget-card">
+                    <h3>Total / Persoană</h3>
+                    <p id="total-cost">750 €</p>
+                    <small>*Fără costul mașinii și mâncare</small>
+                </div>
                 <ul class="budget-list">
-                    <li>
-                        <span>✈️ Bilete de avion</span>
-                        <span class="cost">~500 € / pers <small>mergem cu nașu'</small></span>
-                    </li>
-                    <li>
-                        <span>⛽ Bani motorină</span>
-                        <span class="cost">400 € / pers <small>800€ total</small></span>
-                    </li>
-                    <li>
-                        <span>🏕️ Bani camping</span>
-                        <span class="cost">100 € / pers</span>
-                    </li>
-                    <li>
-                        <span>🍞 Bani de mâncare</span>
-                        <span class="cost">~150 € / pers <small>cerșim la fiecare punct turistic</small></span>
-                    </li>
+                    <li><span>✈️ Bilete de Avion</span><span class="cost">~500 €</span></li>
+                    <li><span>⛽ Motorină "Monster"</span><span class="cost">~150 €</span></li>
+                    <li><span>🏕️ Camping</span><span class="cost">100 €</span></li>
+                    <li><span>🍞 Mâncare</span><span class="cost">150 € <small>(Cerșim)</small></span></li>
                 </ul>
             </div>
 
             <!-- ECRAN 3: HARTA -->
             <div id="map-screen" class="screen">
-                <div class="content-card location-card" data-location-id="landmannalaugar">
-                    <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=800&auto=format&fit=crop" alt="Landmannalaugar">
-                    <div class="card-body"><h2>1. Landmannalaugar</h2><p>Cu tot ce înseamnă el, cratere, munți colorați, lacuri etc.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="laki-craters">
-                    <img src="https://images.unsplash.com/photo-1534279539332-d34a8a142814?w=800&auto=format&fit=crop" alt="Laki Craters">
-                    <div class="card-body"><h2>2. Laki craters</h2><p>Plus locații din zonă.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="kerlingarfjoll">
-                    <img src="https://images.unsplash.com/photo-1617190534649-d8c4234a2d34?w=800&auto=format&fit=crop" alt="Kerlingarfjoll">
-                    <div class="card-body"><h2>3. Kerlingarfjoll + Hveravellir</h2><p>Zonă geotermală vibrantă și izvoare fierbinți.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="axlafoss">
-                    <img src="https://images.unsplash.com/photo-1547733994-9e3b51861a43?w=800&auto=format&fit=crop" alt="Cascada Axlafoss">
-                    <div class="card-body"><h2>4. Axlafoss</h2><p>Cascadă într-un canion impresionant.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="blafjallafoss">
-                    <img src="https://images.unsplash.com/photo-1604789232362-3867562bec98?w=800&auto=format&fit=crop" alt="Cascada Blafjallafoss">
-                    <div class="card-body"><h2>5. Blafjallafoss</h2><p>Cascada cu mașina pe deasupra.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="maelifell">
-                    <img src="https://images.unsplash.com/photo-1633267290933-2336c175852a?w=800&auto=format&fit=crop" alt="Maelifell">
-                    <div class="card-body"><h2>6. Maelifell</h2><p>Muntele din deșertul negru – una dintre cele mai râvnite locații.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="raudibotn">
-                    <img src="https://images.unsplash.com/photo-1632369991393-9671f7536128?w=800&auto=format&fit=crop" alt="Raudibotn">
-                    <div class="card-body"><h2>7. Raudibotn + Holmsarfossar</h2><p>Crater de un roșu intens și cascadele din apropiere.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="thakgil">
-                    <img src="https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?w=800&auto=format&fit=crop" alt="Thakgil">
-                    <div class="card-body"><h2>8. Thakgil (Þakgil)</h2><p>Zonă de hike, aproape de un ghețar.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="waterfall-hike">
-                    <img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&auto=format&fit=crop" alt="Skogafoss">
-                    <div class="card-body"><h2>9. The waterfall hike</h2><p>De la Skogafoss, ~13 km, ~15-20 cascade.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="langisjor">
-                    <img src="https://images.unsplash.com/photo-1628359441744-53746736c244?w=800&auto=format&fit=crop" alt="Langisjor">
-                    <div class="card-body"><h2>10. Ofaerufoss + Langisjor</h2><p>Unul dintre cele mai mari lacuri, peisaje bune din dronă.</p></div>
-                </div>
-                <div class="content-card location-card" data-location-id="braided-rivers">
-                    <img src="https://images.unsplash.com/photo-1553667818-57fb44116c53?w=800&auto=format&fit=crop" alt="Braided Rivers">
-                    <div class="card-body"><h2>11. Braided rivers of Iceland</h2><p>Râuri glaciare văzute de sus.</p></div>
-                </div>
-                <div class="content-card location-card">
-                    <div class="card-body"><h2>Și mai mult...</h2><p>Există și alte locații, pe care le vom discuta ulterior.</p></div>
-                </div>
+                <iframe 
+                    src="https://www.google.com/maps/d/embed?mid=CODUL_TAU_UNIC_AL_HARTII" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <!-- 
+                    IMPORTANT: 
+                    Lățimea (width) și înălțimea (height) iframe-ului vor fi controlate de CSS 
+                    pentru a-l face responsiv și a umple containerul .screen.
+                    Nu este nevoie să specifici width și height aici dacă folosești CSS-ul furnizat anterior.
+                    Am lăsat atributele width și height goale sau le poți elimina complet.
+                -->
             </div>
 
             <!-- ECRAN 4: CHECKLIST -->
@@ -141,19 +100,6 @@
         </nav>
     </div>
     
-    <!-- Structura pentru Modalul Galeriei Foto -->
-    <div id="gallery-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-modal-btn" class="modal-close-btn">×</button>
-            <div class="gallery-container">
-                <img id="gallery-image" src="" alt="Imagine din galerie">
-                <button id="prev-image-btn" class="gallery-nav-btn prev">❮</button>
-                <button id="next-image-btn" class="gallery-nav-btn next">❯</button>
-            </div>
-            <div id="gallery-counter" class="gallery-counter"></div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
