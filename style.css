@@ -1,0 +1,242 @@
+/* --- Setări Globale și Variabile --- */
+:root {
+    --bg-color: #121212;
+    --surface-color: #1E1E1E;
+    --primary-color: #00A896;
+    --text-color: #E0E0E0;
+    --text-secondary: #AAAAAA;
+    --font-heading: 'Teko', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --border-radius: 16px;
+    --header-height: 60px;
+    --nav-height: 70px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-family: var(--font-body); }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent; /* Elimină flash-ul albastru la atingere pe mobil */
+}
+
+/* --- Structura App Shell --- */
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-header {
+    height: var(--header-height);
+    background-color: var(--surface-color);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    flex-shrink: 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.app-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: white;
+}
+
+.app-main {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px;
+}
+
+/* --- Managementul Ecranelor și Tranzițiilor --- */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.screen.active {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+.screen.exit-left {
+    transform: translateX(-20px);
+}
+
+
+/* --- Bara de Navigație (Tab Bar) --- */
+.app-nav {
+    height: var(--nav-height);
+    background-color: var(--surface-color);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #2a2a2a;
+    flex-shrink: 0;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.nav-button.active {
+    color: var(--primary-color);
+}
+
+.nav-button svg {
+    width: 28px;
+    height: 28px;
+}
+
+.nav-button span {
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+}
+
+
+/* --- Stiluri Componente Specifice Ecrane --- */
+
+/* Dashboard Screen */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.info-card {
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+.info-card h3 { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; }
+.info-card p { font-family: var(--font-heading); font-size: 1.8rem; line-height: 1.2; }
+.info-card span { font-size: 0.8rem; color: #888; }
+
+/* Carduri de continut generale */
+.content-card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.content-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+.content-card .card-body {
+    padding: 20px;
+}
+.card-body h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+.price-tag {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+
+/* Budget Screen */
+.total-budget-card {
+    background: linear-gradient(45deg, var(--primary-color), #007a6e);
+    color: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.total-budget-card h3 { color: rgba(255,255,255,0.8); font-size: 1rem; text-transform: uppercase;}
+.total-budget-card p { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1; }
+.total-budget-card small { color: rgba(255,255,255,0.7); }
+
+.budget-list {
+    list-style: none;
+}
+.budget-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 1.1rem;
+}
+.budget-list li:last-child { border: none; }
+.budget-list .cost { font-weight: bold; color: var(--primary-color); }
+.budget-list small { font-size: 0.9rem; color: var(--text-secondary); font-style: italic; }
+
+/* Checklist Screen */
+.checklist {
+    list-style: none;
+}
+.checklist li {
+    background-color: var(--surface-color);
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s ease;
+}
+.checklist li.checked {
+    opacity: 0.5;
+}
+.checklist li.checked span {
+    text-decoration: line-through;
+}
+.checklist .checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.checklist .checkbox svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--primary-color);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.checklist li.checked .checkbox svg {
+    opacity: 1;
+    transform: scale(1);
+}
