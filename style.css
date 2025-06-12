@@ -84,7 +84,7 @@ body {
     transform: translateX(-20px);
 }
 
-/* --- Bara de Navigație (Tab Bar) --- */
+/* --- Bara de Navigație (Tab Bar) - MODIFICAT PENTRU 5 ELEMENTE --- */
 .app-nav {
     position: fixed;
     bottom: 0;
@@ -94,7 +94,7 @@ body {
     height: var(--nav-height);
     background-color: var(--surface-color);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* MODIFICAT */
     border-top: 1px solid #2a2a2a;
 }
 
@@ -109,351 +109,247 @@ body {
     gap: 4px;
     cursor: pointer;
     transition: color 0.2s ease;
+    padding: 5px 0; /* Adăugat pentru a gestiona textul mai lung */
 }
 .nav-button.active { color: var(--primary-color); }
-.nav-button svg { width: 28px; height: 28px; }
-.nav-button span { font-size: 0.75rem; font-family: var(--font-body); }
+.nav-button svg { width: 26px; height: 26px; } /* Puțin mai mic pentru 5 elemente */
+.nav-button span { 
+    font-size: 0.7rem;  /* Puțin mai mic pentru 5 elemente */
+    font-family: var(--font-body);
+    line-height: 1.2; /* Pentru a preveni suprapunerea textului pe 2 rânduri */
+    text-align: center;
+}
 
 
 /* --- Stiluri Componente Specifice Ecrane (MOBILE-FIRST) --- */
 
 /* Dashboard Screen */
-.dashboard-layout {
-    display: flex; 
-    flex-direction: column;
-    gap: 20px; 
-}
-
-.dashboard-sidebar .info-grid {
-    display: grid;
-    grid-template-columns: 1fr; 
-    gap: 15px;
-}
-
-.dashboard-sidebar .info-card {
-    background-color: var(--surface-color);
-    padding: 20px; 
-    border-radius: var(--border-radius);
-    text-align: center;
-}
-.dashboard-sidebar .info-card h3 { 
-    font-size: 0.9rem; 
-    color: var(--text-secondary); 
-    text-transform: uppercase; 
-    margin-bottom: 5px;
-}
-.dashboard-sidebar .info-card p { 
-    font-family: var(--font-heading); 
-    font-size: 2rem; 
-    line-height: 1.2; 
-    margin-bottom: 5px;
-}
-.dashboard-sidebar .info-card span { 
-    font-size: 0.85rem; 
-    color: #888; 
-}
+.dashboard-layout { display: flex; flex-direction: column; gap: 20px; }
+.dashboard-sidebar .info-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.dashboard-sidebar .info-card { background-color: var(--surface-color); padding: 20px; border-radius: var(--border-radius); text-align: center; }
+.dashboard-sidebar .info-card h3 { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 5px; }
+.dashboard-sidebar .info-card p { font-family: var(--font-heading); font-size: 2rem; line-height: 1.2; margin-bottom: 5px; }
+.dashboard-sidebar .info-card span { font-size: 0.85rem; color: #888; }
 
 /* Carduri de continut generale (include .vehicle-card) */
-.content-card {
-    background-color: var(--surface-color);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-}
-.content-card img {
-    width: 100%;
-    height: auto; 
-    max-height: 250px; 
-    object-fit: contain; 
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto; 
-    background-color: var(--bg-color); 
-}
+.content-card { background-color: var(--surface-color); border-radius: var(--border-radius); overflow: hidden; }
+.content-card img { width: 100%; height: auto; max-height: 250px; object-fit: cover; /* Schimbat din contain în cover */ display: block; background-color: var(--bg-color); }
 .content-card .card-body { padding: 20px; }
-.card-body h2 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    margin-bottom: 5px;
-    color: var(--primary-color);
-}
-.price-tag {
-    display: inline-block;
-    margin-top: 10px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
+.card-body h2 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 5px; color: var(--primary-color); }
+.price-tag { display: inline-block; margin-top: 10px; background-color: var(--primary-color); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
 
 /* Budget Screen */
-.total-budget-card {
-    background: linear-gradient(45deg, var(--primary-color), #007a6e);
-    color: white;
-    padding: 25px;
-    border-radius: var(--border-radius);
-    text-align: center;
-    margin-bottom: 20px;
-}
+.total-budget-card { background: linear-gradient(45deg, var(--primary-color), #007a6e); color: white; padding: 25px; border-radius: var(--border-radius); text-align: center; margin-bottom: 20px; }
 .total-budget-card h3 { color: rgba(255,255,255,0.8); font-size: 1rem; text-transform: uppercase;}
 .total-budget-card p { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1; }
 .total-budget-card small { color: rgba(255,255,255,0.7); }
-
 .budget-list { list-style: none; }
-.budget-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 0;
-    border-bottom: 1px solid #2a2a2a;
-    font-size: 1.1rem;
-}
+.budget-list li { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #2a2a2a; font-size: 1.1rem; }
 .budget-list li:last-child { border: none; }
 .budget-list .cost { font-weight: bold; color: var(--primary-color); }
 .budget-list small { font-size: 0.9rem; color: var(--text-secondary); font-style: italic; }
 
-/* Map Screen / Traseu - NOU */
-.location-list {
-    display: grid;
-    gap: 20px;
-}
+/* Map Screen / Traseu */
+.location-list { display: grid; gap: 20px; }
+.location-card { background-color: var(--surface-color); border-radius: var(--border-radius); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; }
+.location-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.location-card img { width: 100%; height: 180px; object-fit: cover; }
+.location-card-content { padding: 15px; }
+.location-card-content h3 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--primary-color); margin-bottom: 8px; }
+.location-card-content p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.5; }
+.btn-details { display: inline-block; background-color: var(--primary-color); color: white; padding: 10px 15px; border: none; border-radius: 8px; font-family: var(--font-body); font-weight: bold; text-align: center; cursor: pointer; transition: background-color 0.2s ease; }
+.btn-details:hover { background-color: #008a75; }
 
-.location-card {
+/* Itinerary Screen - NOU */
+.itinerary-day-card {
     background-color: var(--surface-color);
     border-radius: var(--border-radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer; /* Indică faptul că este click-abil */
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-.location-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.location-card img {
-    width: 100%;
-    height: 180px; /* Înălțime fixă pentru imaginea din card */
-    object-fit: cover; /* Asigură umplerea spațiului, poate tăia imaginea */
-}
-
-.location-card-content {
-    padding: 15px;
-}
-
-.location-card-content h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    margin-bottom: 8px;
-}
-
-.location-card-content p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
+.itinerary-day-header {
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
     margin-bottom: 15px;
+}
+.itinerary-day-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--primary-color);
+}
+.itinerary-day-header .day-name {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-left: 10px;
+}
+.itinerary-event-list {
+    list-style: none;
+}
+.itinerary-event-list li {
+    display: flex;
+    align-items: flex-start; /* Aliniază la început pentru descrieri pe mai multe rânduri */
+    padding: 12px 0;
+    border-bottom: 1px dashed #2a2a2a;
+}
+.itinerary-event-list li:last-child {
+    border-bottom: none;
+}
+.event-time {
+    font-weight: bold;
+    color: var(--text-color);
+    min-width: 110px; /* Spațiu pentru ore mai lungi */
+    font-size: 0.95rem;
+}
+.event-description {
+    flex-grow: 1;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
     line-height: 1.5;
 }
-
-.btn-details {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-.btn-details:hover {
-    background-color: #008a75; /* O nuanță puțin mai închisă la hover */
+.event-type-icon {
+    font-size: 1.2rem;
+    margin-left: 15px;
+    color: var(--primary-color);
 }
 
 
 /* Checklist Screen */
 .checklist { list-style: none; }
-.checklist li {
-    background-color: var(--surface-color);
-    margin-bottom: 10px;
-    padding: 15px 20px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.3s ease;
-}
+.checklist li { background-color: var(--surface-color); margin-bottom: 10px; padding: 15px 20px; border-radius: 12px; display: flex; align-items: center; gap: 15px; cursor: pointer; user-select: none; transition: opacity 0.3s ease; }
 .checklist li.checked { opacity: 0.5; }
 .checklist li.checked span { text-decoration: line-through; }
-.checklist .checkbox {
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.checklist .checkbox svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--primary-color);
-    opacity: 0;
-    transform: scale(0.5);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
+.checklist .checkbox { width: 24px; height: 24px; border: 2px solid var(--primary-color); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.checklist .checkbox svg { width: 16px; height: 16px; fill: var(--primary-color); opacity: 0; transform: scale(0.5); transition: opacity 0.2s ease, transform 0.2s ease; }
 .checklist li.checked .checkbox svg { opacity: 1; transform: scale(1); }
 
 /* --- Stiluri pentru Modal --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background-color: var(--surface-color); padding: 25px; border-radius: var(--border-radius); width: 90%; max-width: 650px; max-height: 90vh; overflow-y: auto; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-close-button { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2rem; color: var(--text-secondary); cursor: pointer; line-height: 1; }
+.modal-close-button:hover { color: var(--text-color); }
+
+/* Carusel Foto în Modal - NOU */
+.carousel {
+    position: relative;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundal semi-transparent */
+    max-width: 600px; /* Limitează lățimea caruselului */
+    margin: 0 auto 25px auto; /* Centrează și adaugă spațiu jos */
+    overflow: hidden;
+    border-radius: 10px;
+}
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Animația de slide */
+}
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 350px; /* Înălțime maximă pentru imaginile din carusel */
+    object-fit: cover;
+    display: block;
+}
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Asigură că este deasupra tuturor celorlalte elemente */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
+.carousel-button:hover { background-color: rgba(0, 0, 0, 0.8); }
 
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background-color: var(--surface-color);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 600px; /* Lățime maximă pentru modal */
-    max-height: 90vh; /* Înălțime maximă, permite scroll dacă e nevoie */
-    overflow-y: auto;
-    position: relative;
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
-}
-
-.modal-overlay.active .modal-content {
-    transform: scale(1);
-}
-
-.modal-close-button {
+.carousel-dots {
+    text-align: center;
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--text-secondary);
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+.carousel-dot {
     cursor: pointer;
-    line-height: 1;
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
-.modal-close-button:hover {
-    color: var(--text-color);
-}
+.carousel-dot.active { background-color: rgba(255, 255, 255, 0.9); }
 
-#modal-location-name {
+/* Secțiuni Informații în Modal - NOU */
+#modal-location-name { font-family: var(--font-heading); font-size: 2.5rem; color: var(--primary-color); margin-bottom: 5px; } /* Redus margin-bottom */
+
+.modal-info-section {
+    margin-bottom: 20px;
+}
+.modal-info-section h3 {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
 }
-
-#modal-location-image {
-    width: 100%;
-    max-height: 300px; /* Înălțime maximă pentru imaginea din modal */
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-#modal-location-description {
-    font-size: 1rem;
+.modal-info-section p {
+    font-size: 0.95rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+}
+.modal-info-section p strong {
     color: var(--text-color);
-    margin-bottom: 20px;
 }
 
-.modal-map-container {
-    width: 100%;
-    height: 300px; /* Înălțime fixă pentru containerul hărții */
-    border-radius: 10px;
-    overflow: hidden; /* Ascunde colțurile iframe-ului dacă e nevoie */
-    background-color: #333; /* Fundal în caz că harta nu se încarcă imediat */
+#modal-location-description { /* Stil specific pentru descrierea principală */
+    font-size: 1rem;
+    color: var(--text-color);
 }
 
-#modal-map-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+.modal-map-container { width: 100%; height: 300px; border-radius: 10px; overflow: hidden; background-color: #333; }
+#modal-map-iframe { width: 100%; height: 100%; border: none; }
 
 
 /* --- MEDIA QUERIES PENTRU RESPONSIVE --- */
-
 @media (min-width: 768px) {
-    .app-shell {
-        max-width: 1024px;
-        margin: 20px auto;
-        height: calc(100vh - 40px);
-        border-radius: 20px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        overflow: hidden;
-    }
-
-    .app-header, .app-nav, .app-main {
-        position: absolute; 
-    }
-    
+    .app-shell { max-width: 1024px; margin: 20px auto; height: calc(100vh - 40px); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; }
+    .app-header, .app-nav, .app-main { position: absolute; }
     .app-header { width: 100%; left: auto; right: auto; }
     .app-nav { width: 100%; left: auto; right: auto; }
     .app-main { width: 100%; left: auto; right: auto; }
-
     .app-header h1 { font-size: 2.5rem; }
-    .nav-button span { font-size: 0.85rem; }
+    .nav-button span { font-size: 0.8rem; } /* Ajustat pentru 5 elemente */
 
-    .dashboard-layout {
-        display: grid;
-        grid-template-columns: 2fr 1fr; 
-        gap: 25px; 
-        align-items: flex-start; 
-    }
-
-    .dashboard-sidebar .info-grid {
-        grid-template-columns: 1fr; 
-        gap: 20px; 
-    }
-    
-    /* Pe tablete, cardurile de locație pot fi pe 2 coloane */
-    .location-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .dashboard-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; align-items: flex-start; }
+    .dashboard-sidebar .info-grid { grid-template-columns: 1fr; gap: 20px; }
+    .location-list { grid-template-columns: repeat(2, 1fr); }
+    .itinerary-day-card { padding: 25px; }
+    .itinerary-day-header h2 { font-size: 2.5rem; }
+    .event-time { min-width: 120px; }
 }
 
 @media (min-width: 1024px) {
-    .app-shell {
-        max-width: 1200px;
-    }
-
-    .dashboard-layout {
-        gap: 30px;
-    }
-
-    /* Pe desktop, cardurile de locație pot fi pe 3 coloane dacă se dorește */
-    /* .location-list {
-        grid-template-columns: repeat(3, 1fr);
-    } */
+    .app-shell { max-width: 1200px; }
+    .dashboard-layout { gap: 30px; }
+    /* .location-list { grid-template-columns: repeat(3, 1fr); } */ /* Opțional pentru 3 coloane */
 }

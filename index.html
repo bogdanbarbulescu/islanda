@@ -71,42 +71,52 @@
                 </ul>
             </div>
 
-            <!-- ECRAN 3: HARTA / TRASEU - NOUA STRUCTURĂ -->
+            <!-- ECRAN 3: HARTA / TRASEU -->
             <div id="map-screen" class="screen">
                 <div class="location-list">
-                    <!-- Exemplu Card Locație 1 -->
+                    <!-- Card Locație 1 - Landmannalaugar CORECTAT -->
                     <div class="location-card" 
                          data-location-name="Landmannalaugar"
-                         data-location-image="images/landmannalaugar.jpeg"
+                         data-location-images='["images/landmannalaugar1.jpg", "images/landmannalaugar2.jpg", "images/landmannalaugar3.jpg"]'
                          data-location-description="Inima colorată a Islandei. Munți de riolit, cratere vulcanice, lacuri glaciare și izvoare termale. Un paradis pentru fotografi și aventurieri."
-                         data-map-embed-url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54019.50189958002!2d-19.091030648632808!3d63.989999999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d11459933170c7%3A0x81270a5e7029903e!2sLandmannalaugar!5e0!3m2!1sen!2sro!4v1678886400000!5m2!1sen!2sro">
-                        <img src="images/landmannalaugar.jpeg" alt="Landmannalaugar">
+                         data-map-embed-url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54019.50189958002!2d-19.091030648632808!3d63.989999999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d11459933170c7%3A0x81270a5e7029903e!2sLandmannalaugar!5e0!3m2!1sen!2sro!4v1678886400000!5m2!1sen!2sro"
+                         data-location-difficulty="Drumeție Medie / Off-road"
+                         data-location-tips="Lumină excelentă la apus. Necesită bocanci buni."
+                         data-location-coordinates="63.9909,-19.0629">  <!-- Atributele se termină AICI, înainte de închiderea tag-ului > -->
+                        <img src="images/landmannalaugar1.jpg" alt="Landmannalaugar">
                         <div class="location-card-content">
                             <h3>Landmannalaugar</h3>
                             <p>Munți colorați și izvoare termale.</p>
-                            <button class="btn-details">Vezi Detalii & Hartă</button>
+                            <button class="btn-details">Vezi Detalii</button>
                         </div>
                     </div>
 
-                    <!-- Exemplu Card Locație 2 -->
+                    <!-- Card Locație 2 - Laki Craters CORECTAT -->
                     <div class="location-card"
                          data-location-name="Laki Craters (Lakagígar)"
-                         data-location-image="images/laki_craters.jpeg"
+                         data-location-images='["images/laki_craters.jpeg", "images/laki_craters2.jpg"]'
                          data-location-description="Un peisaj apocaliptic și magnific. O înșiruire de peste 130 de cratere formate într-o erupție masivă. Vom explora zona și canioanele din apropiere."
-                         data-map-embed-url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86206.00100000001!2d-18.299999999999997!3d64.06666699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d05b5a00000001%3A0x9a5c000000000000!2sLakag%C3%ADgar!5e0!3m2!1sen!2sro!4v1678886500000!5m2!1sen!2sro">
+                         data-map-embed-url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86206.00100000001!2d-18.299999999999997!3d64.06666699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d05b5a00000001%3A0x9a5c000000000000!2sLakag%C3%ADgar!5e0!3m2!1sen!2sro!4v1678886500000!5m2!1sen!2sro"
+                         data-location-difficulty="Off-road / Drumeție Ușoară"
+                         data-location-tips="Ideal pentru fotografie panoramică. Atenție la vânt."
+                         data-location-coordinates="64.0667,-18.2333"> <!-- Atributele se termină AICI, înainte de închiderea tag-ului > -->
                         <img src="images/laki_craters.jpeg" alt="Laki Craters">
                         <div class="location-card-content">
                             <h3>Laki Craters</h3>
                             <p>Peisaj vulcanic impresionant.</p>
-                            <button class="btn-details">Vezi Detalii & Hartă</button>
+                            <button class="btn-details">Vezi Detalii</button>
                         </div>
                     </div>
-                    
                     <!-- Aici se pot adăuga mai multe .location-card -->
                 </div>
             </div>
 
-            <!-- ECRAN 4: CHECKLIST -->
+            <!-- ECRAN 4: ITINERAR -->
+            <div id="itinerary-screen" class="screen">
+                <!-- Conținutul va fi generat dinamic de JavaScript -->
+            </div>
+
+            <!-- ECRAN 5: CHECKLIST -->
             <div id="checklist-screen" class="screen">
                  <ul class="checklist">
                     <!-- Elementele vor fi adăugate din JS -->
@@ -127,6 +137,12 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 <span>Traseu</span>
             </button>
+            <button data-screen="itinerary-screen" data-title="Itinerar" class="nav-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                </svg>
+                <span>Itinerar</span>
+            </button>
             <button data-screen="checklist-screen" data-title="Checklist" class="nav-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
                 <span>Checklist</span>
@@ -139,8 +155,34 @@
         <div class="modal-content">
             <button class="modal-close-button">×</button>
             <h2 id="modal-location-name">Nume Locație</h2>
-            <img id="modal-location-image" src="" alt="Imagine Locație">
-            <p id="modal-location-description">Descriere detaliată a locației...</p>
+            
+            <div id="modal-carousel" class="carousel">
+                <div class="carousel-slides">
+                    <!-- Slide-urile vor fi generate de JS -->
+                </div>
+                <button class="carousel-button prev" aria-label="Previous slide">❮</button>
+                <button class="carousel-button next" aria-label="Next slide">❯</button>
+                <div class="carousel-dots">
+                    <!-- Indicatorii vor fi generați de JS -->
+                </div>
+            </div>
+
+            <div class="modal-info-section">
+                <h3>Detalii Aventură</h3>
+                <p><strong>Dificultate:</strong> <span id="modal-location-difficulty">N/A</span></p>
+                <p><strong>Locație:</strong> <a id="modal-location-gmaps-link" href="#" target="_blank" rel="noopener noreferrer">Deschide în Google Maps</a></p>
+            </div>
+            
+            <div class="modal-info-section">
+                <h3>Descriere</h3>
+                <p id="modal-location-description">Descriere detaliată a locației...</p>
+            </div>
+
+            <div class="modal-info-section">
+                <h3>Sfaturi Foto & Utile</h3>
+                <p id="modal-location-tips">N/A</p>
+            </div>
+            
             <div class="modal-map-container">
                 <iframe 
                     id="modal-map-iframe"
