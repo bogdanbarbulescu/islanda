@@ -1,7 +1,7 @@
 {
-  "name": "Aventura Islanda 2025",
-  "short_name": "Islanda '25",
-  "description": "Planul de bătălie pentru cucerirea Islandei.",
+  "name": "Trip Planner",
+  "short_name": "Trip Planner",
+  "description": "Plan and manage your adventures. All data saved locally.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#121212",
